@@ -141,6 +141,13 @@ func (h *ZerologHandler) Handle(ctx context.Context, record slog.Record) error {
 				})
 			}
 
+			store := slogFieldsFromContext(ctx)
+			if store != nil && len(store.fields) > 0 {
+				collections.ForEach(store.fields, func(a slog.Attr) {
+					event = appendAttrToEvent(a, event)
+				})
+			}
+
 			break
 		}
 

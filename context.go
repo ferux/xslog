@@ -1,4 +1,4 @@
-package xlog
+package xslog
 
 import (
 	"context"
